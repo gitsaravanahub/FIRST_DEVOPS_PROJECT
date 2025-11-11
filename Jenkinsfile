@@ -15,8 +15,9 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'uilding static website...'
-                sh 'ls -l' 
+                echo 'Building docker image..'
+                sh 'docker build -t devopsimg .'
+                echo 'Image is built'
             }
         }
 
@@ -36,12 +37,10 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploying website to local server folder'
+                echo 'Container runs here..'
                 sh '''
-                    DEPLOY_PATH="/root/DepfoldPro3"
-                    mkdir -p $DEPLOY_PATH
-                    cp -r * $DEPLOY_PATH/
-                    echo "Deployment complete."
+                    docker run -d -p 8081:80 devopsimg
+                    echo "container is running...."
                 '''
             }
         }
