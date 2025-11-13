@@ -40,7 +40,7 @@ pipeline {
             steps {
                 echo 'Container runs here..'
                 sh '''
-                    docker run -d -p 808${BUILD_NUMBER}:80 devopsimg
+                    docker run -d -p 9090:80 devopsimg
                     echo "container is running...."
                 '''
             }
