@@ -15,6 +15,7 @@ pipeline {
 
         stage('Build') {
             steps {
+                sh 'docker rm -f devopsimg || true'
                 echo 'Building docker image..'
                 sh 'docker build -t devopsimg .'
                 echo 'Image is built'
